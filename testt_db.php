@@ -19,6 +19,7 @@ $obj2=new registro_dal();
 $resultado2=$obj2-> insertar($obj);
 print($resultado2);
 
+
 /*
 //trae un campo por matricula
 $obj3=new registro_dal();
@@ -32,4 +33,13 @@ $obj4=new registro_dal();
 $resultado4=$obj4-> get_datos_lista_alumnos();
 print_r($resultado4);
 */
+
+
+/*
+//actualiza la tabla alumnos
+$obj5 = new registro_dal();
+$resultado5 = $obj5->actualizar($obj);
+print_r($resultado5);
+*/
+
 ?>
