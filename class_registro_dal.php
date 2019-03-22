@@ -16,7 +16,7 @@ class registro_dal extends class_Db{
 	//Muestra la tabla alumnos
   function get_datos_lista_alumnos(){
 
-  $elsql = "select Matricula,Nombre,Correo,Telefono,Grado,Id_carrera,Id_materia,Estatus from Alumnos order by Matricula";
+  $elsql = "select Matricula,Nombre,Correo,Telefono,Grado,Id_carrera,Id_materia,Estatus from Especiales order by Matricula";
 
   //print $elsql;exit;
 
@@ -49,7 +49,7 @@ class registro_dal extends class_Db{
   	function insertar($obj){
 
 
-		$sql = "insert into alumnos (";
+		$sql = "insert into especiales (";
   		$sql .= "Matricula,";
         $sql .= "Nombre,";
         $sql .= "Correo,";
@@ -69,21 +69,75 @@ class registro_dal extends class_Db{
         $sql .= "'".$obj->getId_materia()."', ";
         $sql .= "'".$obj->getEstatus()."' ";
         $sql .= ")";
-		//print $sql;exit;
-	   	$this->set_sql($sql);
-        $this->db_conn->set_charset("utf8");
 
-    	mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
+				//echo $sql;exit;
+				$this->set_sql($sql);
+				$this->db_conn->set_charset("utf8");
 
-        if(mysqli_affected_rows($this->db_conn)==1) {
-			$insertado=1;
-			print "insertado"."\n";
-		}else{
-			$insertado=0;
+				mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
+
+				if(mysqli_affected_rows($this->db_conn)==1) {
+						$actualizado=1;
+				}else{
+						$actualizado=0;
+				}
+				unset($obj);
+				return $actualizado;
 		}
-		unset($obj);
- 		return $insertado;
-  	}
+
+		//Existe matricula
+		function existeMatricula($Matricula){
+		 $Matricula=$this->db_conn->real_escape_string($Matricula);
+
+			 $sql = "select count(*) from Alumnos";
+			 $sql .= " where Matricula='$Matricula'";
+
+			 //print $sql;
+			 $this->set_sql($sql);
+			 $rs = mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
+			 //$total_de_registro = mysqli_num_rows($rs);
+			 $renglon= mysqli_fetch_array($rs);
+			 $cuantos= $renglon[0];
+
+			 return $cuantos;
+		 }
+
+		 //Actualizar
+		  function actualizar($obj){
+				/*
+		      $sql = "update especiales set";
+		      $sql .= "Nombre="."'".$obj->getNombre()."',";
+		      $sql .= "Correo="."'".$obj->getCorreo()."',";
+		      $sql .= "Telefono="."'".$obj->getTelefono()."',";
+		      $sql .= "Grado="."'".$obj->getGrado()."',";
+		      $sql .= "Id_carrera="."'".$obj->getId_carrera()."',";
+		      $sql .= "Id_materia="."'".$obj->getId_materia()."',";
+		      $sql .= "Estatus="."'".$obj->getEstatus()."',";
+		      $sql .= "where Matricula ="."'".$obj->getMatricula()."'";
+					*/
+					$sql = "UPDATE especiales " .
+     "SET Nombre = '" . $obj->getNombre() . "'," .
+     "Correo = '" . $obj->getCorreo() . "'," .
+     "Telefono = '" . $obj->getTelefono() . "'," .
+     "Grado = '" . $obj->getGrado() . "'," .
+		 "Id_carrera = '" . $obj->getId_carrera() . "'," .
+		 "Id_materia = '" . $obj->getId_materia() . "'," .
+     "Estatus = '" . $obj->getEstatus() . "'," .
+    "where matricula = '" . $obj->getMatricula() . "'";
+		      //print $sql;exit;
+		      $this->set_sql($sql);
+		      $this->db_conn->set_charset("utf8");
+		      mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
+		      if(mysqli_affected_rows($this->db_conn)==1) {
+		        $actualizado=1;
+		        print "actualizado"."\n";
+		     }
+		      else{
+		        $actualizado=0;
+		     }
+		     unset($obj);
+		      return $actualizado;
+		      }
 
   // function actualizar($obj){
 
@@ -142,7 +196,7 @@ class registro_dal extends class_Db{
     function get_datos_by_matricula($Matricula){
       $Matricula=$this->db_conn->real_escape_string($Matricula);
 
-        $this->set_sql("select Matricula,Nombre,Correo,Telefono,Grado,Id_carrera,Id_materia,Estatus from Alumnos where Matricula='$Matricula'");
+        $this->set_sql("select Matricula,Nombre,Correo,Telefono,Grado,Id_carrera,Id_materia,Estatus from Especiales where Matricula='$Matricula'");
 
         $rs = mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
         $total_de_registro = mysqli_num_rows($rs);
