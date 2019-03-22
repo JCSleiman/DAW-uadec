@@ -59,7 +59,8 @@ function valida_alumno(){
 		return false;
 	}
 
-	alert("Formualario Autorizado. :)");
+	alert("Formulario Autorizado. :)");
+	window.location.href = "testt_db.php";
 }
 
 function validar_mtr(evt){
