@@ -15,7 +15,7 @@ if(class_exists('class_Db') != true)
     	//Base de Datos
     	function __construct(){
 
-        	$this->set_db("localhost","root","metal1234","especialesdb");
+        	$this->set_db("localhost","root","","especialesdb");
 
     	}
 
