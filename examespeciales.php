@@ -25,6 +25,7 @@
                 <div class="signup-form">
                     <form  action = "testt_db.php" method="POST" name="RegistroForm" class="register-form" id="register-form" onsubmit="return false">
                         <h1>Examenes Especiales</h1>
+                        <form action="examespeciales.php" method="POST" accept-charset="utf-8" onsubmit="return valida_alumno();">
                         <div class="form-group">
                             <label for="matricula">Matricula :</label>
                             <input type="text" maxlength="8" onkeypress="validar_mtr(event);" name="imatricula" id="imatricula" placeholder="Ingresa tu Matricula" />
@@ -84,10 +85,10 @@
                                 <div class="form-select">
                                     <select name="smaterias" id="imaterias">
                                         <option value="0" disabled selected>Ingresa la Materia: </option>
-                                        <option value="1"> Materia 1</option>
-                                        <option value="2"> Materia 2</option>
-                                        <option value="3"> Materia 3</option>
-                                        <option value="4"> Materia 4</option>
+                                        <option value="1"> Calculo diferencial</option>
+                                        <option value="2"> Programacion 1</option>
+                                        <option value="3"> Base de datos 2</option>
+                                        <option value="4"> Dibujo Tecnico</option>
                                     </select>
                                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                 </div>
