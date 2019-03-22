@@ -11,15 +11,34 @@ $carrera=$_POST["scarrera"];
 $materias=$_POST["smaterias"];
 $estatus=$_POST["sestatus"];
 
-echo "Los datos $matricula , $nombre , $correo , $telefono , $grado , $carrera , $materias , $estatus se registraron!"."\n";
+//echo "Los datos $matricula , $nombre , $correo , $telefono , $grado , $carrera , $materias , $estatus se registraron!"."\n";
 
 
+//Existe alumno
+$obj5=new registro_dal();
+$resultado5=$obj5-> existeMatricula($matricula);
+print_r($resultado5);
+if($resultado5!=0) {
+  print "Matricula si existe!"."\n";
+  //Se crea un objeto con el constructor de class_registro mandando los datos del formulario como parametros
+  $obj=new registro($matricula,$nombre,$correo,$telefono,$grado,$carrera,$materias,$estatus);
+  //Se manda ese objeto creado($obj) mandando llamar a la funcion insertar
+  $obj2=new registro_dal();
+  $resultado2=$obj2-> insertar($obj);
+  print($resultado2);
+}else{
+    print "Matricula no existe!"."\n";
+}
+
+/*
 //Se crea un objeto con el constructor de class_registro mandando los datos del formulario como parametros
 $obj=new registro($matricula,$nombre,$correo,$telefono,$grado,$carrera,$materias,$estatus);
 //Se manda ese objeto creado($obj) mandando llamar a la funcion insertar
 $obj2=new registro_dal();
 $resultado2=$obj2-> insertar($obj);
 print($resultado2);
+*/
+
 
 
 /*
@@ -34,5 +53,20 @@ print_r($resultado3);
 $obj4=new registro_dal();
 $resultado4=$obj4-> get_datos_lista_alumnos();
 print_r($resultado4);
+*/
+
+/*
+//Existe alumno
+$obj5=new registro_dal();
+$resultado5=$obj5-> existeMatricula(22975);
+print_r($resultado5);
+*/
+
+/*
+//actualiza la tabla alumnos
+$obj=new registro($matricula,$nombre,$correo,$telefono,$grado,$carrera,$materias,$estatus);
+$obj6 = new registro_dal();
+$resultado6 = $obj6->actualizar($obj);
+print_r($resultado6);
 */
 ?>
