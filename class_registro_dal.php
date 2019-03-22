@@ -139,7 +139,37 @@ class registro_dal extends class_Db{
 		      return $actualizado;
 		      }
 
-/*
+  // function actualizar($obj){
+
+  //   $sql = "UPDATE alumnos ";
+  //   $sql .= SET  "Matricula = '"$obj->getMatricula()"',";
+  //   $sql .= "Nombre = '"$obj->getNombre()"',";
+  //   $sql .= "Correo = '"$obj->getCorreo()"',";
+  //   $sql .= "Telefono = '"$obj->getTelefono()"',";
+  //   $sql .= "Grado = '"$obj->getGrado()"',";
+  //   $sql .= "Id_carrera = '"$obj->getId_carrera()"',";
+  //   $sql .= "Id_materia = '"$obj->getId_materia()"',";
+  //   $sql .= "Estatus = '"$obj->getEstatus()"' ";
+  //   $sql .= "WHERE Matricula = '"$obj->getMatricula()"'";
+
+  //   //print $sql;exit;
+  //   $this->set_sql($sql);
+  //   $this->db_conn->set_charset("utf8");
+
+  //   mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
+
+  //   if(mysqli_affected_rows($this->db_conn)==1) {
+  //     $actualizado=1;
+  //     print "actualizado"."\n";
+  //   }
+  //   else{
+  //     $actualizado=0;
+  //   }
+  //   unset($obj);
+  //   return $actualizado;
+  //   }
+
+ /*
         //borrar
     function borrar($obj){
 
@@ -152,12 +182,12 @@ class registro_dal extends class_Db{
         mysqli_query($this->db_conn,$this->db_query) or die(mysqli_error($this->db_conn));
 
         if(mysqli_affected_rows($this->db_conn)==1) {
-            $insertado=1;
+            $borrado=1;
         }else{
-            $insertado=0;
+            $borrado=0;
         }
         unset($obj);
-        return $insertado;
+        return $borrado;
     }
 
 */
