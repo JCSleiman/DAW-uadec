@@ -1,3 +1,8 @@
+<?php require_once "class_registro_dal.php";
+$ml_crr = new registro_dal();
+$ml = $ml_crr->get_datos_lista_materias();
+$crr = $ml_crr->get_datos_lista_carreras();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,9 +28,8 @@
                     <img src="images/signup-img.jpg" alt="">
                 </div>
                 <div class="signup-form">
-                    <form  action = "testt_db.php" method="POST" name="RegistroForm" class="register-form" id="register-form" onsubmit="return false">
+                    <form  action = "testt_db.php" method="POST" name="RegistroForm" class="register-form" id="register-form">
                         <h1>Examenes Especiales</h1>
-                        <form action="examespeciales.php" method="POST" accept-charset="utf-8" onsubmit="return valida_alumno();">
                         <div class="form-group">
                             <label for="matricula">Matricula :</label>
                             <input type="text" maxlength="8" onkeypress="validar_mtr(event);" name="imatricula" id="imatricula" placeholder="Ingresa tu Matricula" />
@@ -66,14 +70,11 @@
                                 <div class="form-select">
                                     <select name="scarrera" id="icarrera">
                                         <option value="0" disabled selected>Ingresa tu Carrera: </option>
-                                        <option value="0">Seleccionar Carrera</option>
-                                        <option value="1"> Ingeniero en electronica y comunicaciones 828</option>
-                                        <option value="2"> Ingeniero en sistemas computacionales 828</option>
-                                        <option value="3"> Ingeniero industrial y de sistemas 828</option>
-                                        <option value="4"> Ingeniero en tecnologias de informacion y comunicaciones 828</option>
-                                        <option value="5"> Ingeniero en tecnologias de informacion y comunicaciones 828</option>
-                                        <option value="6"> Licenciado en sistemas computacionales y administrativos 828</option>
-                                        <option value="7"> Ingeniero automotriz 828</option>
+                                        <?php 
+                                            foreach ($crr as $key => $value) {
+                                                ?>
+                                                <option value="<?php echo $value[0] ?>"><?php echo $value[1]  ?></option>
+                                                <?php  }  ?>
                                     </select>
                                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                 </div>
@@ -85,10 +86,11 @@
                                 <div class="form-select">
                                     <select name="smaterias" id="imaterias">
                                         <option value="0" disabled selected>Ingresa la Materia: </option>
-                                        <option value="1"> Calculo diferencial</option>
-                                        <option value="2"> Programacion 1</option>
-                                        <option value="3"> Base de datos 2</option>
-                                        <option value="4"> Dibujo Tecnico</option>
+                                        <?php 
+                                            foreach ($ml as $key => $value) {
+                                                ?>
+                                                <option value="<?php echo $value[0] ?>"><?php echo $value[1]  ?></option>
+                                                <?php  }  ?>   
                                     </select>
                                     <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
                                 </div>
